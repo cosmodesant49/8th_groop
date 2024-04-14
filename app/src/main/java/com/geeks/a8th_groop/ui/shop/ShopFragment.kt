@@ -5,21 +5,40 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.geeks.a8th_groop.R
+import com.geeks.a8th_groop.ShopItem
+import com.geeks.a8th_groop.databinding.FragmentShopBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class ShopFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
+    private var _binding: FragmentShopBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_shop, container, false)
+    ): View {
+        _binding = FragmentShopBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val homeItems = listOf(
+            ShopItem("Item 1", "Description 1", "$250,000"),
+            ShopItem("Item 2", "Description 2", "$150,000")
+            // Populate your list with real data
+        )
+
+        with(binding.recyclerView) {
+            adapter = ShopAdapter(homeItems)
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
