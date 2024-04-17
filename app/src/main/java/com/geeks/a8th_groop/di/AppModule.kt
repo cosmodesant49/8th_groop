@@ -1,5 +1,8 @@
 package com.geeks.a8th_groop.di
 
+import android.app.Application
+import androidx.room.Room
+import com.geeks.a8th_groop.data.db.ShopDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,5 +36,20 @@ object AppModule {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         return interceptor
+    }
+
+/*    @Provides
+    @Singleton
+    fun provideShopRepository(repository: Repository): ShopRepository {
+        return repository
+    }*/
+    @Provides
+    @Singleton
+    fun provideShopDatabase(application: Application): ShopDatabase {
+        return Room.databaseBuilder(
+            application,
+            ShopDatabase::class.java,
+            "shop_database"
+        ).build()
     }
 }

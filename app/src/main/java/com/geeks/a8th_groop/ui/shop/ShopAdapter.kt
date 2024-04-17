@@ -3,10 +3,10 @@ package com.geeks.a8th_groop.ui.shop
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.geeks.a8th_groop.ShopItem
+import com.geeks.a8th_groop.ShopModel
 import com.geeks.a8th_groop.databinding.ItemShopBinding
 
-class ShopAdapter(private val homeItems: List<ShopItem>) : RecyclerView.Adapter<ShopAdapter.HomeViewHolder>() {
+class ShopAdapter(private val homeItems: List<ShopModel>) : RecyclerView.Adapter<ShopAdapter.HomeViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         val binding = ItemShopBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -21,7 +21,7 @@ class ShopAdapter(private val homeItems: List<ShopItem>) : RecyclerView.Adapter<
     override fun getItemCount() = homeItems.size
 
     class HomeViewHolder(private val binding: ItemShopBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(homeItem: ShopItem) {
+        fun bind(homeItem: ShopModel) {
             with(binding) {
                 tvName.text = homeItem.name
                 tvDesc.text = homeItem.desc

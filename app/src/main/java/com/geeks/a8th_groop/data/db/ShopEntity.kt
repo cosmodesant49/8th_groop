@@ -1,4 +1,4 @@
-package com.geeks.a8th_groop.data
+package com.geeks.a8th_groop.data.db
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
